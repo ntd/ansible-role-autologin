@@ -4,15 +4,15 @@
   remote_user: root
   roles:
     # Minimal test
-    - role: ansible-role-nut
+    - role: ansible-role-autologin
     # Custom user and startup program
-    - role: ntd.autologin
+    - role: ansible-role-autologin
       autologin_user:
         name:  ntd1
         group: users
       autologin_startup: myprogram
     # Custom user and xinitrc script
-    - role: ntd.autologin
+    - role: ansible-role-autologin
       autologin_user:
         name:    ntd2
         group:   users
