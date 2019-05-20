@@ -1,0 +1,26 @@
+---
+
+# Minimal test
+- hosts: locahost
+  roles:
+  - role: ntd.autologin
+
+# Custom user and startup program
+- hosts: locahost
+  roles:
+  - role: ntd.autologin
+    autologin_user:
+        name:  ntd1
+        group: users
+    autologin_startup: myprogram
+
+# Custom user and xinitrc script
+- hosts: locahost
+  roles:
+  - role: ntd.autologin
+    autologin_user:
+        name:    ntd2
+        group:   users
+        groups:  dialout
+        comment: Nicola Fontana
+    autologin_xinitrc: myxinitrc

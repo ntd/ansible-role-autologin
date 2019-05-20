@@ -1,0 +1,17 @@
+---
+
+# User that must login automatically in the host
+autologin_user:
+  name: "operator"
+  group: "users"
+  groups:
+  comment:
+
+# Command to execute just after login
+autologin_startup: "startx"
+
+# Eventual .xinitrc file to install in user home folder
+autologin_xinitrc: ""
+
+# Default path for overriding the getty service
+autologin_override: "/etc/systemd/system/getty@tty1.service.d"

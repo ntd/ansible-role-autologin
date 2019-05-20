@@ -1,0 +1,39 @@
+---
+
+- name: Create predefined user.
+  user:
+    name: "{{ autologin_user.name|mandatory }}"
+    group: "{{ autologin_user.group|mandatory }}"
+    groups: "{{ autologin_user.groups }}"
+    comment: "{{ autologin_user.comment }}"
+    state: present
+    append: True
+
+- name: Create directory for autologin service.
+  file:
+    path: "{{ autologin_override }}"
+    state: directory
+
+- name: Override getty to append the autologin feature.
+  template:
+    src: "autologin.j2"
+    dest: "{{ autologin_override }}/override.conf"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Start provided program after login.
+  lineinfile:
+    path: "/home/{{ autologin_user.name }}/.profile"
+    line: '[ "$(tty)" = "/dev/tty1" ] && exec {{ autologin_startup }}'
+    create: True
+  when: autologin_startup != ""
+
+- name: Install proper .xinitrc into user home folder.
+  copy:
+    src: "{{ autologin_xinitrc }}"
+    dest: "/home/{{ autologin_user.name }}/.xinitrc"
+    owner: "{{ autologin_user.name }}"
+    group: "{{ autologin_user.group }}"
+    mode: 0644
+  when: autologin_xinitrc != ""

@@ -1,0 +1,31 @@
+dependencies: []
+
+galaxy_info:
+  author: Nicola Fontana
+  description: Create a new user and configure the system to log him in automatically,
+  company: eNTiDi software
+
+  license: MIT
+  min_ansible_version: 2.0
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Fedora
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Suse
+      versions:
+        - all
+  galaxy_tags:
+    - login
+    - autologin
+    - user
+    - getty
+    - xinitrc
