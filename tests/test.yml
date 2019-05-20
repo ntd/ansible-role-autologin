@@ -1,26 +1,21 @@
 ---
 
-# Minimal test
-- hosts: locahost
+- hosts: localhost
+  remote_user: root
   roles:
-  - role: ntd.autologin
-
-# Custom user and startup program
-- hosts: locahost
-  roles:
-  - role: ntd.autologin
-    autologin_user:
+    # Minimal test
+    - role: ansible-role-nut
+    # Custom user and startup program
+    - role: ntd.autologin
+      autologin_user:
         name:  ntd1
         group: users
-    autologin_startup: myprogram
-
-# Custom user and xinitrc script
-- hosts: locahost
-  roles:
-  - role: ntd.autologin
-    autologin_user:
+      autologin_startup: myprogram
+    # Custom user and xinitrc script
+    - role: ntd.autologin
+      autologin_user:
         name:    ntd2
         group:   users
         groups:  dialout
         comment: Nicola Fontana
-    autologin_xinitrc: myxinitrc
+      autologin_xinitrc: myxinitrc
