@@ -1,5 +1,6 @@
 Ansible Role: autologin
 =======================
+[![Build Status](https://travis-ci.org/ntd/ansible-role-autologin.svg?branch=master)](https://travis-ci.org/ntd/ansible-role-autologin)
 
 Create a new user and configure the system to log him in automatically,
 either in textual or graphical mode. No display manager is required: all
