@@ -1,0 +1,39 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+
+  vars:
+    autologin_user:
+      name: "dummy"
+      group: "users"
+      comment: "Dummy user created for testing"
+
+  roles:
+    - role: ntd.autologin
+
+  post_tasks:
+
+    - name: Fetch caller info.
+      command: whoami
+      register: whoami
+      changed_when: false
+
+    - name: Show caller information.
+      debug: var=whoami
+
+    - name: Fetch user info.
+      command: pinky -l {{ autologin_user.name }}
+      register: userinfo
+      changed_when: false
+
+    - name: Show user information.
+      debug: var=userinfo
+
+    - name: Check if the user has the proper 'comment' attribute.
+      shell: |
+        set -o pipefail
+        pinky -l '{{ autologin_user.name }}' | grep -Fq '{{ autologin_user.comment }}'
+      args:
+        executable: /bin/bash
+      changed_when: false

@@ -4,10 +4,10 @@
   user:
     name: "{{ autologin_user.name|mandatory }}"
     group: "{{ autologin_user.group|mandatory }}"
-    groups: "{{ autologin_user.groups }}"
-    comment: "{{ autologin_user.comment }}"
+    groups: "{{ autologin_user.groups|default('') }}"
+    comment: "{{ autologin_user.comment|default('') }}"
     state: present
-    append: True
+    append: true
 
 - name: Create directory for autologin service.
   file:
@@ -26,7 +26,7 @@
   lineinfile:
     path: "/home/{{ autologin_user.name }}/.profile"
     line: '[ "$(tty)" = "/dev/tty1" ] && exec {{ autologin_startup }}'
-    create: True
+    create: true
   when: autologin_startup|length
 
 - name: Install proper .xinitrc into user home folder.
