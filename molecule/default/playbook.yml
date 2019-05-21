@@ -14,26 +14,19 @@
 
   post_tasks:
 
-    - name: Fetch caller info.
-      command: whoami
-      register: whoami
-      changed_when: false
-
-    - name: Show caller information.
-      debug: var=whoami
-
-    - name: Fetch user info.
+    - name: Fetch new user info.
       command: pinky -l {{ autologin_user.name }}
       register: userinfo
       changed_when: false
 
-    - name: Show user information.
+    - name: Show new user details, just for reference.
       debug: var=userinfo
 
     - name: Check if the user has the proper 'comment' attribute.
       shell: |
         set -o pipefail
-        pinky -l '{{ autologin_user.name }}' | grep -Fq '{{ autologin_user.comment }}'
+        pinky -l '{{ autologin_user.name }}' |
+        grep -Fq '{{ autologin_user.comment }}'
       args:
         executable: /bin/bash
       changed_when: false

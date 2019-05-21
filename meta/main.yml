@@ -2,7 +2,7 @@
 galaxy_info:
   author: Nicola Fontana
   role_name: autologin
-  description: Create a new user and configure the system to log him in automatically,
+  description: Configure the OS to automatically log in a specific user.
   company: eNTiDi software
   license: MIT
   min_ansible_version: 2.0
