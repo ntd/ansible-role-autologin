@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: Nicola Fontana
+  role_name: autologin
   description: Create a new user and configure the system to log him in automatically,
   company: eNTiDi software
   license: MIT
