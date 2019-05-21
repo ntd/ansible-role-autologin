@@ -19,8 +19,8 @@ Available variables are listed below, along with default values (see
 `defaults/main.yml` for up to date info):
 
     autologin_user:
-      name:
-      group:
+      name: "operator"
+      group: "users"
       groups:
       comment:
 
