@@ -27,7 +27,7 @@
     path: "/home/{{ autologin_user.name }}/.profile"
     line: '[ "$(tty)" = "/dev/tty1" ] && exec {{ autologin_startup }}'
     create: True
-  when: autologin_startup != ""
+  when: autologin_startup|length
 
 - name: Install proper .xinitrc into user home folder.
   copy:
@@ -36,4 +36,4 @@
     owner: "{{ autologin_user.name }}"
     group: "{{ autologin_user.group }}"
     mode: 0644
-  when: autologin_xinitrc != ""
+  when: autologin_xinitrc|length
